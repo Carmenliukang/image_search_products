@@ -16,6 +16,10 @@ def get_random_only_letter(k):
     return ''.join(random.choices(string.ascii_letters, k=k))
 
 
+def get_random_str(k):
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=k))
+
+
 def request_get(url, params=None, headers={}, allow_redirects=True):
     try:
         with contextlib.closing(
@@ -51,10 +55,10 @@ def request_get_text(url, params=None, headers={}, allow_redirects=True):
         return "fail", ""
 
 
-def request_post(url, data=None, headers={}):
+def request_post(url, data=None, files=None, headers={}):
     try:
-        with contextlib.closing(requests.post(url, data=data, headers=headers, timeout=30)) as req:
-            data = req.json()
+        with contextlib.closing(requests.post(url, data=data, files=files, headers=headers, timeout=30)) as req:
+            data = req.text
         return "succ", data
     except Exception as e:
         print(e)
