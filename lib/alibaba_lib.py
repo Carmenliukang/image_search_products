@@ -53,8 +53,7 @@ class Alibaba(object):
 
         files = {
             "name": (None, name),
-            # "ua": (None, ""),
-            "file": (name, bytestream)
+            "file": (name, bytestream, 'image/jpeg')
         }
 
         status, res = request_post(self.upload_url, data=None, files=files, headers=self.headers)
